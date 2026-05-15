@@ -1,9 +1,20 @@
 from django.shortcuts import render
+from usuarios.forms import LoginForms, CadastroForms
 
 def login(request):
-    return render(request, 'usuarios/login.html')
-          
+    
+    
+    
+    if request.method == 'POST':
+        form = LoginForms(request.POST)
+        if form.is_valid():
+            # Process the valid form data
+            pass
+    else:
+        form = LoginForms()
+    return render(request, 'usuarios/login.html', {'form': form})
 
 def cadastro(request):
-    return render(request, 'usuarios/cadastro.html')
+    form = CadastroForms()
+    return render(request, 'usuarios/cadastro.html', {'form': form})
            

@@ -19,3 +19,7 @@ def buscar(request):
             fotografias = fotografias.filter(nome__icontains=nome_a_buscar)
 
     return render(request, "galeria/buscar.html", {"cards": fotografias})
+
+def surpreenda_me(request):
+    fotografias = Fotografia.objects.order_by("-data_fotografia").filter(publicada=True)
+    return render(request, "galeria/surpreenda-me.html", {"cards": fotografias})
